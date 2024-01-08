@@ -9,11 +9,10 @@
             font-family: 'SF Pro Display', sans-serif;
             margin: 50px;
             font-size: 24px; /* Set the desired font size for the entire page */
-            text-align: left; /* Align text to the top left */
         }
 
-        #greeting, #datetime {
-            display: inline-block; /* Display elements in a block with inline-level elements */
+        .text-left {
+            text-align: left;
         }
 
         #datetime {
@@ -23,8 +22,8 @@
 </head>
 <body>
 
-    <div id="greeting"></div>
-    <div id="datetime"></div>
+    <div id="greeting" class="text-left"></div>
+    <div id="datetime" class="text-left"></div>
 
     <script>
         function updateDateTime() {
@@ -43,4 +42,23 @@
             var greeting;
             if (currentDate.getHours() < 12) {
                 greeting = 'Good Morning!';
-            } else if (current
+            } else if (currentDate.getHours() < 18) {
+                greeting = 'Good Afternoon!';
+            } else {
+                greeting = 'Good Evening!';
+            }
+
+            // Display formatted greeting, date, and time
+            document.getElementById('greeting').innerHTML = greeting + '<br>';
+            document.getElementById('datetime').innerHTML = formattedDate + '<br>' + formattedTime;
+        }
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial update
+        updateDateTime();
+    </script>
+
+</body>
+</html>
