@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time and Date Display</title>
+    <title>Greeting Display</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,34 +14,35 @@
 </head>
 <body>
 
-    <h1>Current Time and Date</h1>
+    <h1>Greeting</h1>
     
-    <div id="datetime"></div>
+    <div id="greeting"></div>
 
     <script>
-        function updateDateTime() {
+        function updateGreeting() {
             var currentDate = new Date();
+            var currentHour = currentDate.getHours();
+
+            // Determine the greeting based on the current hour
+            var greeting;
+            if (currentHour < 12) {
+                greeting = 'Good Morning!';
+            } else if (currentHour < 18) {
+                greeting = 'Good Afternoon!';
+            } else {
+                greeting = 'Good Evening!';
+            }
             
-            // Format time in military (24-hour) format
-            var hours = currentDate.getHours().toString().padStart(2, '0');
-            var minutes = currentDate.getMinutes().toString().padStart(2, '0');
-            var formattedTime = hours + ':' + minutes;
-            
-            // Format date
-            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            var formattedDate = currentDate.toLocaleDateString('en-US', options);
-            
-            // Display formatted time and date
-            document.getElementById('datetime').innerHTML = formattedTime + '<br>' + formattedDate;
+            // Display the greeting
+            document.getElementById('greeting').textContent = greeting;
         }
 
-        // Update time and date every second
-        setInterval(updateDateTime, 1000);
+        // Update greeting every second
+        setInterval(updateGreeting, 1000);
 
         // Initial update
-        updateDateTime();
+        updateGreeting();
     </script>
 
 </body>
 </html>
-
