@@ -7,15 +7,22 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: left;
             margin: 50px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        #datetime {
+            font-family: 'SF Pro Display', sans-serif;
         }
     </style>
 </head>
 <body>
 
-    <div id="greeting"></div>
-    <div id="datetime"></div>
+    <div id="greeting" class="text-left"></div>
+    <div id="datetime" class="text-left"></div>
 
     <script>
         function updateDateTime() {
@@ -54,4 +61,3 @@
 
 </body>
 </html>
-
