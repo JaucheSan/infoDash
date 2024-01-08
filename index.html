@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date and Time Display</title>
+    <title>Date, Time, and Greeting Display</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,26 +14,38 @@
 </head>
 <body>
 
+    <div id="greeting"></div>
     <div id="datetime"></div>
 
     <script>
         function updateDateTime() {
             var currentDate = new Date();
-            
+
             // Format time in military (24-hour) format
             var hours = currentDate.getHours().toString().padStart(2, '0');
             var minutes = currentDate.getMinutes().toString().padStart(2, '0');
             var formattedTime = hours + ':' + minutes;
-            
+
             // Format date
-            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            var formattedDate = currentDate.toLocaleDateString('en-US', options);
-            
-            // Display formatted time and date
-            document.getElementById('datetime').innerHTML = formattedTime + '<br>' + formattedDate;
+            var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            var formattedDate = currentDate.toLocaleDateString('en-US', options).toUpperCase();
+
+            // Determine the greeting based on the current hour
+            var greeting;
+            if (currentDate.getHours() < 12) {
+                greeting = 'Good Morning!';
+            } else if (currentDate.getHours() < 18) {
+                greeting = 'Good Afternoon!';
+            } else {
+                greeting = 'Good Evening!';
+            }
+
+            // Display formatted greeting, date, and time
+            document.getElementById('greeting').innerHTML = greeting + '<br>';
+            document.getElementById('datetime').innerHTML = formattedDate + '<br>' + formattedTime;
         }
 
-        // Update time and date every second
+        // Update date and time every second
         setInterval(updateDateTime, 1000);
 
         // Initial update
