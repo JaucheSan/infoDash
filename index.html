@@ -21,9 +21,18 @@
     <script>
         function updateDateTime() {
             var currentDate = new Date();
-            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            
+            // Format time
+            var hours = currentDate.getHours();
+            var minutes = currentDate.getMinutes();
+            var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+            
+            // Format date
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             var formattedDate = currentDate.toLocaleDateString('en-US', options);
-            document.getElementById('datetime').textContent = formattedDate;
+            
+            // Display formatted time and date
+            document.getElementById('datetime').innerHTML = formattedTime + '<br>' + formattedDate;
         }
 
         // Update time and date every second
@@ -35,3 +44,4 @@
 
 </body>
 </html>
+
