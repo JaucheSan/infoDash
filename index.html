@@ -22,10 +22,10 @@
         function updateDateTime() {
             var currentDate = new Date();
             
-            // Format time
+            // Format time in military (24-hour) format
             var hours = currentDate.getHours();
             var minutes = currentDate.getMinutes();
-            var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+            var formattedTime = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
             
             // Format date
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -44,4 +44,3 @@
 
 </body>
 </html>
-
