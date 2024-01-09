@@ -15,15 +15,37 @@
             text-align: left;
         }
 
-        #datetime {
-            font-family: 'SF Pro Display', sans-serif;
+        #greeting {
+            font-family: 'SF Pro Display', sans-serif; /* Change the font for the greeting */
+            font-weight: bold; /* Make the greeting font bolder */
+            color: #000000; /* Change the color of the greeting */
+            font-size: 22px;
+        }
+
+        #date {
+            font-family: 'SF Pro Rounded', sans-serif;
+            font-weight: bold;
+            color: #FF3B30;  
+            font-size: 25px;
+            
+      }
+
+        #clock {
+            font-family: 'SF Pro Rounded', sans-serif; /* Change the font for the clock */
+            font-weight: bold; /* Make the clock font bolder */
+            font-size: 60px;
+        }
+
+        #year {
+            font-weight: lighter; /* Make the year font lighter */
         }
     </style>
 </head>
 <body>
 
     <div id="greeting" class="text-left"></div>
-    <div id="datetime" class="text-left"></div>
+    <div id="date" class="text-left"></div>
+    <div id="clock" class="text-left"></div>
 
     <script>
         function updateDateTime() {
@@ -35,8 +57,11 @@
             var formattedTime = hours + ':' + minutes;
 
             // Format date
-            var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-            var formattedDate = currentDate.toLocaleDateString('en-US', options).toUpperCase();
+            var weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+            var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+            var formattedDate = weekdays[currentDate.getDay()] + ' ' + currentDate.getDate() + ' ' + months[currentDate.getMonth()] + ' ';
+            var formattedYear = currentDate.getFullYear();
 
             // Determine the greeting based on the current hour
             var greeting;
@@ -50,7 +75,8 @@
 
             // Display formatted greeting, date, and time
             document.getElementById('greeting').innerHTML = greeting + '<br>';
-            document.getElementById('datetime').innerHTML = formattedDate + '<br>' + formattedTime;
+            document.getElementById('date').innerHTML = formattedDate + '<span id="year">' + formattedYear + '</span><br>';
+            document.getElementById('clock').innerHTML = formattedTime;
         }
 
         // Update date and time every second
